@@ -6,11 +6,12 @@ fixture `Google Test Search`
 test('it returns theartofeducation.edu when searching for the art of education', async t => {
     let googleSearchBox = ".gLFyf"
     let googleSearchButton = ".gNO89b"
+    let googleSearchResult = ".yuRUbf"
 
     await t
         .typeText(googleSearchBox, 'The Art of Education University')
         .click(googleSearchButton)
-        .click('.yuRUbf')
+        .click(googleSearchResult)
         .click('#mobile-menu-toggle')
         .click('.nav-item.help-nav-item')
         .maximizeWindow()
