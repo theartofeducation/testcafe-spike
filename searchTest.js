@@ -7,30 +7,25 @@ test('it returns theartofeducation.edu when searching for the art of education',
     let googleSearchBox = ".gLFyf"
     let googleSearchButton = ".gNO89b"
     let googleSearchResult = ".yuRUbf"
+    let attendButton = '.btn.btn-3d.btn-green'
 
     await t
+        .maximizeWindow()
         .typeText(googleSearchBox, 'The Art of Education University')
         .click(googleSearchButton)
         .click(googleSearchResult)
-        .click('#mobile-menu-toggle')
-        .click('.nav-item.help-nav-item')
+        .click('.search-message')
+        .typeText('#search-site', "NOW Conference")
         .maximizeWindow()
-        .typeText('.kb-search__bar', 'NOW Conference')
         .pressKey('enter')
         .maximizeWindow()
 
-        // This selects the third search result listed
-        let link = Selector(".kb-search-results__title").withText(" Experience")
+        // This selects the 2021 Winter Conference Search Result
+        let link = Selector(".attachment-square.size-square.wp-post-image").withAttribute('alt', "Winter 2021 NOW Conference")
         await t.click(link)
         .maximizeWindow()
 
-        // Clicks the NOW Conference Link nested into the "Now Conference Experience" paragraph
-        link = Selector(".kb-article.tinymce-content")
-            .child('p')
-            .child('a')
-            .withAttribute('href', 'https://theartofeducation.edu/products/event/summer-2019-art-ed-now/')
-
-        await t.click(link)
-        .maximizeWindow()
+        // Clicks the "I want to attend with my Art Team" button
+        await t.click(attendButton)
         .wait(5000)
 })
